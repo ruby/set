@@ -4,8 +4,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Akinori MUSHA"]
   spec.email         = ["knu@idaemons.org"]
 
-  spec.summary       = %q{TODO: Write a short summary, because RubyGems requires one.}
-  spec.description   = %q{TODO: Write a longer description or delete this line.}
+  spec.summary       = %q{Provides a class to deal with collections of unordered, unique values}
+  spec.description   = %q{Provides a class to deal with collections of unordered, unique values}
   spec.homepage      = "https://github.com/ruby/set"
   spec.required_ruby_version = Gem::Requirement.new(">= 2.3.0")
 
