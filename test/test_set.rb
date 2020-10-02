@@ -794,6 +794,11 @@ class TC_Set < Test::Unit::TestCase
       assert_equal(klass.new([a]), set, klass.name)
     }
   end
+
+  def test_array_op_set
+    assert_equal([1,2,1,4,1], [1,2,1] + Set[4,1])
+    assert_equal([1,2,4], [1,2,1] | Set[4,1])
+  end
 end
 
 class TC_Enumerable < Test::Unit::TestCase

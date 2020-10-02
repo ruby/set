@@ -191,10 +191,21 @@ class Set
   end
 
   # Converts the set to an array.  The order of elements is uncertain.
+  # Sets can be converted implicitly to arrays.
+  #
+  #     Set[1, 2].to_a                    #=> [1, 2]
+  #     Set[1, 'c', :s].to_ary            #=> [1, "c", :s]
+  #     [1, 2] + Set[1, 'c', :s]          #=> [1, 2, 1, "c", :s]
+  def to_a
+    @hash.keys
+  end
+  alias to_ary to_a
+
+  # Converts the set to an array.  The order of elements is uncertain.
   #
   #     Set[1, 2].to_a                    #=> [1, 2]
   #     Set[1, 'c', :s].to_a              #=> [1, "c", :s]
-  def to_a
+  def to_ary
     @hash.keys
   end
 
