@@ -628,6 +628,12 @@ class Set
     end
   end
 
+  # Returns a string created by converting each element of the set to a string
+  # See also: Array#join
+  def join(separator=nil)
+    to_a.join(separator)
+  end
+
   InspectKey = :__inspect_key__         # :nodoc:
 
   # Returns a string containing a human-readable representation of the
