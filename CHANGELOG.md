@@ -1,6 +1,6 @@
 # Set Changelog
 
-## 1.0.0 (Unreleased)
+## 1.0.0 (2020-12-21)
 
 This is the first release of set as a gem.  Here lists the changes since the version bundled with Ruby 2.7.
 
