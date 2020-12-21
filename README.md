@@ -44,3 +44,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 Bug reports and pull requests are welcome on GitHub at https://github.com/ruby/set.
 
 Feature requests should also go to https://bugs.ruby-lang.org/ for wider audience and discussion.
+
+## License
+
+The gem is available as open source under either the terms of the [2-Clause BSD License](https://opensource.org/licenses/BSD-2-Clause).  When bundled with Ruby, you can distribute/modify this program under the same terms of [Ruby](https://www.ruby-lang.org/en/about/license.txt).
