@@ -22,7 +22,16 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+require 'set'
+s1 = Set[1, 2]                        #=> #<Set: {1, 2}>
+s2 = [1, 2].to_set                    #=> #<Set: {1, 2}>
+s1 == s2                              #=> true
+s1.add("foo")                         #=> #<Set: {1, 2, "foo"}>
+s1.merge([2, 6])                      #=> #<Set: {1, 2, "foo", 6}>
+s1.subset?(s2)                        #=> false
+s2.subset?(s1)                        #=> true
+```
 
 ## Development
 
@@ -32,5 +41,10 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/hsbset.
+Bug reports and pull requests are welcome on GitHub at https://github.com/ruby/set.
 
+Feature requests should also go to https://bugs.ruby-lang.org/ for wider audience and discussion.
+
+## License
+
+The gem is available as open source under either the terms of the [2-Clause BSD License](https://opensource.org/licenses/BSD-2-Clause).  When bundled with Ruby, you can distribute/modify this program under the same terms of [Ruby](https://www.ruby-lang.org/en/about/license.txt).
