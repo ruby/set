@@ -690,3 +690,5 @@ module Enumerable
     klass.new(self, *args, &block)
   end
 end
+
+autoload :SortedSet, "#{__dir__}/set/sorted_set"
