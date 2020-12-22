@@ -1,6 +1,11 @@
 # Set Changelog
 
-## 1.0.0 (2020-12-21)
+# 1.0.1 (2020-12-22)
+
+* Enhancements
+  * Eliminate warnings
+
+# 1.0.0 (2020-12-21)
 
 This is the first release of set as a gem.  Here lists the changes since the version bundled with Ruby 2.7.
 
