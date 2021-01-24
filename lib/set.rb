@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-# :markup: markdown
 #
 # set.rb - defines the Set class
 #
@@ -16,16 +15,16 @@
 # of unordered values with no duplicates.  It is a hybrid of Array's
 # intuitive inter-operation facilities and Hash's fast lookup.
 #
-# The method `to_set` is added to Enumerable for convenience.
+# The method +to_set+ is added to Enumerable for convenience.
 #
 # Set implements a collection of unordered values with no duplicates.
 # This is a hybrid of Array's intuitive inter-operation facilities and
 # Hash's fast lookup.
 #
-# Set is easy to use with Enumerable objects (implementing `each`).
+# Set is easy to use with Enumerable objects (implementing +each+).
 # Most of the initializer methods and binary operators accept generic
 # Enumerable objects besides sets and arrays.  An Enumerable object
-# can be converted to Set using the `to_set` method.
+# can be converted to Set using the +to_set+ method.
 #
 # Set uses Hash as storage, so you must note the following points:
 #
@@ -38,27 +37,25 @@
 # * When a string is to be stored, a frozen copy of the string is
 #   stored instead unless the original string is already frozen.
 #
-# ## Comparison
+# == Comparison
 #
-# The comparison operators `<`, `>`, `<=`, and `>=` are implemented as
-# shorthand for the {proper_,}{subset?,superset?} methods.  The `<=>`
-# operator reflects this order, or return `nil` for sets that both
-# have distinct elements (`{x, y}` vs. `{x, z}` for example).
+# The comparison operators <tt><</tt>, <tt>></tt>, <tt><=</tt>, and <tt>>=</tt> are implemented as
+# shorthand for the {proper_,}{subset?,superset?} methods.  The <tt><=></tt>
+# operator reflects this order, or return <tt>nil</tt> for sets that both
+# have distinct elements (<tt>{x, y}</tt> vs. <tt>{x, z}</tt> for example).
 #
-# ## Example
+# == Example
 #
-# ```ruby
-# require 'set'
-# s1 = Set[1, 2]                        #=> #<Set: {1, 2}>
-# s2 = [1, 2].to_set                    #=> #<Set: {1, 2}>
-# s1 == s2                              #=> true
-# s1.add("foo")                         #=> #<Set: {1, 2, "foo"}>
-# s1.merge([2, 6])                      #=> #<Set: {1, 2, "foo", 6}>
-# s1.subset?(s2)                        #=> false
-# s2.subset?(s1)                        #=> true
-# ```
+#   require 'set'
+#   s1 = Set[1, 2]                        #=> #<Set: {1, 2}>
+#   s2 = [1, 2].to_set                    #=> #<Set: {1, 2}>
+#   s1 == s2                              #=> true
+#   s1.add("foo")                         #=> #<Set: {1, 2, "foo"}>
+#   s1.merge([2, 6])                      #=> #<Set: {1, 2, "foo", 6}>
+#   s1.subset?(s2)                        #=> false
+#   s2.subset?(s1)                        #=> true
 #
-# ## Contact
+# == Contact
 #
 # - Akinori MUSHA <<knu@iDaemons.org>> (current maintainer)
 #
@@ -197,9 +194,9 @@ class Set
   end
 
   # Returns self if no arguments are given.  Otherwise, converts the
-  # set to another with `klass.new(self, *args, &block)`.
+  # set to another with <tt>klass.new(self, *args, &block)</tt>.
   #
-  # In subclasses, returns `klass.new(self, *args, &block)` unless
+  # In subclasses, returns <tt>klass.new(self, *args, &block)</tt> unless
   # overridden.
   def to_set(klass = Set, *args, &block)
     return self if instance_of?(Set) && klass == Set && block.nil? && args.empty?
@@ -328,7 +325,7 @@ class Set
   end
 
   # Returns true if the set and the given set have no element in
-  # common.  This method is the opposite of `intersect?`.
+  # common.  This method is the opposite of +intersect?+.
   #
   #     Set[1, 2, 3].disjoint? Set[3, 4]   #=> false
   #     Set[1, 2, 3].disjoint? Set[4, 5]   #=> true
@@ -345,7 +342,7 @@ class Set
     self
   end
 
-  # Adds the given object to the set and returns self.  Use `merge` to
+  # Adds the given object to the set and returns self.  Use +merge+ to
   # add many elements at once.
   #
   #     Set[1, 2].add(3)                    #=> #<Set: {1, 2, 3}>
@@ -368,7 +365,7 @@ class Set
   end
 
   # Deletes the given object from the set and returns self.  Use
-  # `subtract` to delete many items at once.
+  # +subtract+ to delete many items at once.
   def delete(o)
     @hash.delete(o)
     self
@@ -402,7 +399,7 @@ class Set
     self
   end
 
-  # Replaces the elements with ones returned by `collect()`.
+  # Replaces the elements with ones returned by +collect+.
   # Returns an enumerator if no block is given.
   def collect!
     block_given? or return enum_for(__method__) { size }
@@ -494,8 +491,8 @@ class Set
   alias intersection &
 
   # Returns a new set containing elements exclusive between the set
-  # and the given enumerable object.  `(set ^ enum)` is equivalent to
-  # `((set | enum) - (set & enum))`.
+  # and the given enumerable object.  <tt>(set ^ enum)</tt> is equivalent to
+  # <tt>((set | enum) - (set & enum))</tt>.
   #
   #     Set[1, 2] ^ Set[2, 3]                   #=> #<Set: {3, 1}>
   #     Set[1, 'b', 'c'] ^ ['b', 'd']           #=> #<Set: {"d", 1, "c"}>
@@ -683,7 +680,7 @@ end
 
 module Enumerable
   # Makes a set from the enumerable object with given arguments.
-  # Needs to `require "set"` to use this method.
+  # Needs to <tt>require "set"</tt> to use this method.
   def to_set(klass = Set, *args, &block)
     klass.new(self, *args, &block)
   end
