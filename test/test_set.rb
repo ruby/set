@@ -641,6 +641,7 @@ class TC_Set < Test::Unit::TestCase
     set2 = Set["a", "b", Set["a", "b", set1]]
 
     assert_equal(set1, set2)
+
     assert_not_equal(Set[Exception.new,nil], Set[Exception.new,Exception.new], "[ruby-dev:26127]")
   end
 
