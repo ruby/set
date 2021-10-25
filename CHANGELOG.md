@@ -1,6 +1,6 @@
 # Set Changelog
 
-# Unreleased
+# 1.0.2 (2021-10-25)
 
 * Enhancements
   * Allow Set#intersect? and #disjoint? to accept array argument \[[Feature #17838][]] [#18][] ([@jeremyevans][])
