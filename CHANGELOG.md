@@ -1,5 +1,10 @@
 # Set Changelog
 
+# 1.0.3 (2022-09-06)
+
+* Enhancements
+  * Make Set a builtin feature \[[Feature #16989][]]
+
 # 1.0.2 (2021-10-25)
 
 * Enhancements
@@ -32,6 +37,7 @@ This is the first release of set as a gem.  Here lists the changes since the ver
 [#18]: https://github.com/ruby/set/pull/18
 [#20]: https://github.com/ruby/set/pull/20
 [Feature #17838]: https://bugs.ruby-lang.org/issues/17838
+[Feature #16989]: https://bugs.ruby-lang.org/issues/16989
 
 [@BurdetteLamar]: https://github.com/BurdetteLamar
 [@jeremyevans]: https://github.com/jeremyevans
