@@ -3,6 +3,7 @@
 # 1.0.x (Unreleased)
 
 * Enhancements
+  * Avoid the `block or return` pattern to save Proc allocations [#29][] ([@casperisfine][])
   * Set#merge takes many enumerable objects [#30][]
 
 # 1.0.3 (2022-09-06)
@@ -41,11 +42,13 @@ This is the first release of set as a gem.  Here lists the changes since the ver
 [#17]: https://github.com/ruby/set/pull/17
 [#18]: https://github.com/ruby/set/pull/18
 [#20]: https://github.com/ruby/set/pull/20
+[#29]: https://github.com/ruby/set/pull/29
 [#30]: https://github.com/ruby/set/pull/30
 [Feature #17838]: https://bugs.ruby-lang.org/issues/17838
 [Feature #16989]: https://bugs.ruby-lang.org/issues/16989
 
 [@BurdetteLamar]: https://github.com/BurdetteLamar
+[@casperisfine]: https://github.com/casperisfine
 [@jeremyevans]: https://github.com/jeremyevans
 [@k-tsj]: https://github.com/k-tsj
 [@knu]: https://github.com/knu
