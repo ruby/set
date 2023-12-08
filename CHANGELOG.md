@@ -1,6 +1,6 @@
 # Set Changelog
 
-# 1.0.x (Unreleased)
+# 1.0.4 (2023-12-08)
 
 * Enhancements
   * Avoid the `block or return` pattern to save Proc allocations [#29][] ([@casperisfine][])
