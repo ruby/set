@@ -1,5 +1,9 @@
 # Set Changelog
 
+# 1.1.0 (2023-12-23)
+
+* Optimize for and require Ruby >=3
+
 # 1.0.4 (2023-12-08)
 
 * Enhancements
