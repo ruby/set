@@ -353,16 +353,15 @@ class Set
     klass.new(self, *args, &block)
   end
 
-  def flatten_merge(set, seen = Set.new) # :nodoc:
+  def flatten_merge(set, seen = Set.new.compare_by_identity) # :nodoc:
     set.each { |e|
       if e.is_a?(Set)
-        if seen.include?(e_id = e.object_id)
+        unless seen.add?(e)
           raise ArgumentError, "tried to flatten recursive Set"
         end
 
-        seen.add(e_id)
         flatten_merge(e, seen)
-        seen.delete(e_id)
+        seen.delete(e)
       else
         add(e)
       end
