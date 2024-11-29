@@ -1,5 +1,11 @@
 # Set Changelog
 
+# 1.1.1 (2024-11-29)
+
+* Enhancements
+  * Fix Set#^ to respect subclasses [#38][] ([@kyanagi][])
+  * Speed up Set#flatten [#39][] ([@kyanagi][])
+
 # 1.1.0 (2023-12-23)
 
 * Optimize for and require Ruby >=3
@@ -48,6 +54,8 @@ This is the first release of set as a gem.  Here lists the changes since the ver
 [#20]: https://github.com/ruby/set/pull/20
 [#29]: https://github.com/ruby/set/pull/29
 [#30]: https://github.com/ruby/set/pull/30
+[#38]: https://github.com/ruby/set/pull/38
+[#39]: https://github.com/ruby/set/pull/39
 [Feature #17838]: https://bugs.ruby-lang.org/issues/17838
 [Feature #16989]: https://bugs.ruby-lang.org/issues/16989
 
@@ -56,4 +64,5 @@ This is the first release of set as a gem.  Here lists the changes since the ver
 [@jeremyevans]: https://github.com/jeremyevans
 [@k-tsj]: https://github.com/k-tsj
 [@knu]: https://github.com/knu
+[@kyanagi]: https://github.com/kyanagi
 [@marcandre]: https://github.com/marcandre
