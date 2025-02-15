@@ -852,4 +852,17 @@ module Enumerable
   end unless method_defined?(:to_set)
 end
 
+class Hash
+  # Returns a new Set containing keys from the Hash
+  #
+  #   h = {a: 1, b: 3}
+  #   h.keys_to_set #=> Set[:a, :b]
+  #
+  def keys_to_set
+    set = Set.new
+    set.instance_variable_set(:@hash, transform_values { true })
+    set
+  end
+end
+
 autoload :SortedSet, "#{__dir__}/set/sorted_set"
