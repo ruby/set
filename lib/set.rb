@@ -1,4 +1,12 @@
 # frozen_string_literal: true
+
+if RUBY_VERSION >= '3.5'
+  if defined?(Set) && defined?(Set.[]) && Set.method(:[]).source_location.nil?
+    # Remove defined? ... conditional after Ruby 3.5.0-preview2
+    return
+  end
+end
+
 # :markup: markdown
 #
 # set.rb - defines the Set class
