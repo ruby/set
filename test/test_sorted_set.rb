@@ -42,4 +42,4 @@ class TC_SortedSet < Test::Unit::TestCase
       var = SortedSet.new.to_s
     RUBY
   end
-end
+end if defined?(SortedSet)
