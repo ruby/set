@@ -785,26 +785,54 @@ class TC_Set < Test::Unit::TestCase
     assert_equal('1 & 2 & 3', Set[1, 2, 3].join(' & '))
   end
 
-  def test_inspect
-    set1 = Set[1, 2]
-    assert_equal('#<Set: {1, 2}>', set1.inspect)
+  if RUBY_VERSION >= '3.5'
+    def test_inspect
+      set1 = Set[1, 2]
+      assert_equal('Set[1, 2]', set1.inspect)
 
-    set2 = Set[Set[0], 1, 2, set1]
-    assert_equal('#<Set: {#<Set: {0}>, 1, 2, #<Set: {1, 2}>}>', set2.inspect)
+      set2 = Set[Set[0], 1, 2, set1]
+      assert_equal('Set[Set[0], 1, 2, Set[1, 2]]', set2.inspect)
 
-    set1.add(set2)
-    assert_equal('#<Set: {#<Set: {0}>, 1, 2, #<Set: {1, 2, #<Set: {...}>}>}>', set2.inspect)
-  end
+      set1.add(set2)
+      assert_equal('Set[Set[0], 1, 2, Set[1, 2, Set[...]]]', set2.inspect)
 
-  def test_to_s
-    set1 = Set[1, 2]
-    assert_equal('#<Set: {1, 2}>', set1.to_s)
+      c = Class.new(Set)
+      c.set_temporary_name("_MySet")
+      assert_equal('_MySet[1, 2]', c[1, 2].inspect)
+    end
 
-    set2 = Set[Set[0], 1, 2, set1]
-    assert_equal('#<Set: {#<Set: {0}>, 1, 2, #<Set: {1, 2}>}>', set2.to_s)
+    def test_to_s
+      set1 = Set[1, 2]
+      assert_equal('Set[1, 2]', set1.to_s)
 
-    set1.add(set2)
-    assert_equal('#<Set: {#<Set: {0}>, 1, 2, #<Set: {1, 2, #<Set: {...}>}>}>', set2.to_s)
+      set2 = Set[Set[0], 1, 2, set1]
+      assert_equal('Set[Set[0], 1, 2, Set[1, 2]]', set2.to_s)
+
+      set1.add(set2)
+      assert_equal('Set[Set[0], 1, 2, Set[1, 2, Set[...]]]', set2.to_s)
+    end
+  else
+    def test_inspect
+      set1 = Set[1, 2]
+      assert_equal('#<Set: {1, 2}>', set1.inspect)
+
+      set2 = Set[Set[0], 1, 2, set1]
+      assert_equal('#<Set: {#<Set: {0}>, 1, 2, #<Set: {1, 2}>}>', set2.inspect)
+
+      set1.add(set2)
+      assert_equal('#<Set: {#<Set: {0}>, 1, 2, #<Set: {1, 2, #<Set: {...}>}>}>', set2.inspect)
+    end
+
+    def test_to_s
+      set1 = Set[1, 2]
+      assert_equal('#<Set: {1, 2}>', set1.to_s)
+
+      set2 = Set[Set[0], 1, 2, set1]
+      assert_equal('#<Set: {#<Set: {0}>, 1, 2, #<Set: {1, 2}>}>', set2.to_s)
+
+      set1.add(set2)
+      assert_equal('#<Set: {#<Set: {0}>, 1, 2, #<Set: {1, 2, #<Set: {...}>}>}>', set2.to_s)
+    end
   end
 
   def test_compare_by_identity
