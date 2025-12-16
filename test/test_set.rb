@@ -885,6 +885,16 @@ class TC_Enumerable < Test::Unit::TestCase
   end
 end
 
+class TC_Hash < Test::Unit::TestCase
+  def test_keys_to_set
+    h = {a: 2, b: 1, c: 37}
+    set = h.keys_to_set
+    expected = Set.new(h.keys)
+
+    assert_equal(set, expected)
+  end
+end
+
 class TC_Set_Builtin < Test::Unit::TestCase
   private def should_omit?
     (RUBY_VERSION.scan(/\d+/).map(&:to_i) <=> [3, 2]) < 0 ||
