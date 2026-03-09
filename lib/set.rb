@@ -638,11 +638,16 @@ class Set
   end
   alias difference -
 
-  # Returns a new set containing elements common to the set and the
-  # given enumerable object.
+  # :call-seq:
+  #   self & object -> new_set
   #
-  #     Set[1, 3, 5] & Set[3, 2, 1]             #=> #<Set: {3, 1}>
-  #     Set['a', 'b', 'z'] & ['a', 'b', 'c']    #=> #<Set: {"a", "b"}>
+  # Returns a new set containing elements found both in +self+
+  # and in +object+, which must be an array:
+  #
+  #   s = [0, 'a', :foo, 1, 'b', :bar]
+  #   s & [0, 'b', 1, :bar] # => [0, 1, "b", :bar]
+  #   s & [2, 'c']          # => []
+  #
   def &(enum)
     n = self.class.new
     if enum.is_a?(Set)
