@@ -2,8 +2,6 @@
 
 return if RUBY_VERSION >= '4'
 
-# :markup: markdown
-#
 # set.rb - defines the Set class
 #
 # Copyright (c) 2002-2024 Akinori MUSHA <knu@iDaemons.org>
@@ -14,7 +12,8 @@ return if RUBY_VERSION >= '4'
 # terms as Ruby.
 
 
-##
+# :markup: markdown
+#
 # This library provides the Set class, which implements a collection
 # of unordered values with no duplicates. It is a hybrid of Array's
 # intuitive inter-operation facilities and Hash's fast lookup.
@@ -223,26 +222,49 @@ class Set
 
   include Enumerable
 
-  # Creates a new set containing the given objects.
+  # :call-seq:
+  #   Set[*objects] -> new_set
   #
-  #     Set[1, 2]                   # => #<Set: {1, 2}>
-  #     Set[1, 2, 1]                # => #<Set: {1, 2}>
-  #     Set[1, 'c', :s]             # => #<Set: {1, "c", :s}>
+  # Returns a new set containing the given objects:
+  #
+  #   Set[%w[a b c], {foo: 0, bar: 1}, 4..10]
+  #   # => #<Set: {["a", "b", "c"], {foo: 0, bar: 1}, 4..10}>
+  #
   def self.[](*ary)
     new(ary)
   end
 
-  # Creates a new set containing the elements of the given enumerable
-  # object.
+  # :call-seq:
+  #   Set.new(object) -> new_set
+  #   Set.new(object) {|element| ... } -> new_set
   #
-  # If a block is given, the elements of enum are preprocessed by the
-  # given block.
+  # Creates a new set based on the given +object+,
+  # which must be enumerable.
   #
-  #     Set.new([1, 2])                       #=> #<Set: {1, 2}>
-  #     Set.new([1, 2, 1])                    #=> #<Set: {1, 2}>
-  #     Set.new([1, 'c', :s])                 #=> #<Set: {1, "c", :s}>
-  #     Set.new(1..5)                         #=> #<Set: {1, 2, 3, 4, 5}>
-  #     Set.new([1, 2, 3]) { |x| x * x }      #=> #<Set: {1, 4, 9}>
+  # With no block given, populates the new set with the elements of +object+:
+  #
+  #   Set.new(%w[ a b c ])      # => #<Set: {"a", "b", "c"}>
+  #   Set.new({foo: 0, bar: 1}) # => #<Set: {[:foo, 0], [:bar, 1]}>
+  #   Set.new(4..10)            # => #<Set: {4, 5, 6, 7, 8, 9, 10}>
+  #   Set.new(Dir.new('test'))
+  #   # => #<Set: {".", "..", "fixtures", "test_set.rb", "test_sorted_set.rb"}>
+  #   Set.new(File.new('Gemfile'))
+  #   # =>
+  #   #<Set:
+  #     {"source \"https://rubygems.org\"\n",
+  #     "\n",
+  #     "# Specify your gem's dependencies in set.gemspec\n",
+  #     "gemspec\n",
+  #     "gem \"rake\", \"~> 12.0\"\n",
+  #     "gem \"minitest\", \"~> 5.0\"\n",
+  #     "gem \"test-unit\"\n"}>
+  #
+  # With a block given, calls the block with each element of +object+;
+  # adds the block's return value to the set:
+  #
+  #   Set.new(4..10) {|i| i * 2 }
+  #   # => #<Set: {8, 10, 12, 14, 16, 18, 20}>
+  #
   def initialize(enum = nil, &block) # :yields: o
     @hash ||= Hash.new(false)
 
