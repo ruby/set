@@ -810,23 +810,51 @@ class Set
     to_a.join(separator)
   end
 
+  def self.__inspect_supports_identity_set?
+    true
+  end
+
   InspectKey = :__inspect_key__         # :nodoc:
 
-  # Returns a string containing a human-readable representation of the
-  # set ("#<Set: {element1, element2, ...}>").
-  def inspect
-    ids = (Thread.current[InspectKey] ||= [])
+  # We share the same `ids` value as `OpenStruct#inspect`, so we need to use an identity Set
+  # only we're using a newer version of the `ostruct` gem which is also using an identity Set.
+  if defined?(OpenStruct.__inspect_supports_identity_set?) && OpenStruct.__inspect_supports_identity_set?
 
-    if ids.include?(object_id)
-      return sprintf('#<%s: {...}>', self.class.name)
+    # Returns a string containing a human-readable representation of the
+    # set ("#<Set: {element1, element2, ...}>").
+    def inspect
+      ids = (Thread.current[InspectKey] ||= Set.new.compare_by_identity)
+
+      unless ids.add?(self)
+        return sprintf('#<%s: {...}>', self.class.name)
+      end
+
+      begin
+        return sprintf('#<%s: {%s}>', self.class, to_a.inspect[1..-2])
+      ensure
+        ids.remove(self)
+      end
     end
 
-    ids << object_id
-    begin
-      return sprintf('#<%s: {%s}>', self.class, to_a.inspect[1..-2])
-    ensure
-      ids.pop
+  else
+
+    # Returns a string containing a human-readable representation of the
+    # set ("#<Set: {element1, element2, ...}>").
+    def inspect
+      ids = (Thread.current[InspectKey] ||= [])
+
+      if ids.include?(object_id)
+        return sprintf('#<%s: {...}>', self.class.name)
+      end
+
+      ids << object_id
+      begin
+        return sprintf('#<%s: {%s}>', self.class, to_a.inspect[1..-2])
+      ensure
+        ids.pop
+      end
     end
+
   end
 
   alias to_s inspect
