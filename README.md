@@ -1,3 +1,5 @@
+**Note:** As of Ruby 4.0, `Set` has become a core class (see [Feature #21216](https://bugs.ruby-lang.org/issues/21216)). Development of this gem repository has ended. Please report feature requests and bug reports at [bugs.ruby-lang.org](https://bugs.ruby-lang.org/).
+
 # Set
 
 This library provides the Set class, which deals with a collection of
