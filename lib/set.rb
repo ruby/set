@@ -219,7 +219,7 @@ return if RUBY_VERSION >= '4'
 #   has been modified while an element in the set.
 #
 class Set
-  VERSION = "1.1.2"
+  VERSION = "1.1.3"
 
   include Enumerable
 
